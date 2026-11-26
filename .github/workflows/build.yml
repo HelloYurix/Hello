@@ -18,11 +18,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller requests
+          pip install pyinstaller requests pycryptodome pywin32
           if (Test-Path requirements.txt) { pip install -r requirements.txt }
 
       - name: Build EXE
-        run: pyinstaller --onefile --hidden-import=requests --collect-all=requests Hello.py
+        run: pyinstaller --onefile --hidden-import=requests --hidden-import=Crypto.Cipher.AES --hidden-import=win32crypt --collect-all=requests --collect-all=Crypto Hello.py
 
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
