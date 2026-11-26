@@ -24,8 +24,14 @@ jobs:
       - name: Build EXE
         run: pyinstaller --onefile --hidden-import=requests --hidden-import=Crypto.Cipher.AES --hidden-import=win32crypt --collect-all=requests --collect-all=Crypto Hello.py
 
+      - name: Copy EXE to root folder
+        shell: pwsh
+        run: Copy-Item -Path "dist\Hello.exe" -Destination ".\Hello.exe" -Force
+
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe
-          path: dist/*.exe
+          path: |
+            dist/*.exe
+            Hello.exe
